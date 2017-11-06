@@ -1,13 +1,13 @@
 RewriteEngine On
 Options +MultiViews
-RewriteBase /hotlink/
+RewriteBase /xamp/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^/\.]+)/?.html$ single.php?post=$1 [L]
-RewriteRule page/?$ http://localhost/hotlink/ [R=301,L]
+RewriteRule page/?$ http://localhost/xamp/ [R=301,L]
 RewriteRule page/([^/\.]+)/?.html$  page/page.php?page=$1 [L]
 RewriteRule ([^/\.]+)/?/([^/\.]+)\.html$  attachment.php?post=$1&img=$2 [L]
-ErrorDocument 404 /hotlink/errors/404.php
+ErrorDocument 404 /xamp/errors/404.php
 ##RewriteRule ([^/\.]+)/?([^/\.]+)\.html$ /att.php?post=$1&att=$2 [L]
 
 
