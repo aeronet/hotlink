@@ -1,8 +1,8 @@
 <?php  
 
 
-$urlFILE = str_replace('-', '+',$_GET['img']);
-$file 	= $urlFILE.'.json'; 
+
+$file 	= $_GET['img'].'.json'; 
 $dir  	= "json/attachment";
 $result	= glob('./'.$dir .'/'.$file);
 //print_r($result);
@@ -14,7 +14,9 @@ if (!empty($result)) {
 
 		$parent = $value['parentIMG'];
 		$title = $value['titleIMG'];
-				echo $title.'<br>';
+			echo '<h2 align="center">'.$title.'</h2>';
+
+		include "deskripsi.php";
 					?>
 				
 <img src="<?php echo $value['urlIMG']; ?>" onerror="this.src='<?php echo $value['thumbIMG'] ?>'" alt="<?php echo $value['titleIMG'] ?>" width="600" height="500" />
@@ -23,8 +25,8 @@ if (!empty($result)) {
 
 	}
 
-$relatedPARENT      = str_replace('-', '+', $parent);
-$file_related 		= $relatedPARENT.'.json'; 
+
+$file_related 		= $parent.'.json'; 
 $dir_related  		= "json/single";
 $result_related		= glob('./'.$dir_related .'/'.$file_related);
 $get_file_related 	= file_get_contents(__DIR__ . '/'.$dir_related.'/'.$file_related);

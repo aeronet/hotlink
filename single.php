@@ -1,6 +1,8 @@
-<?php  
-$urlFILE = str_replace('-', '+',$_GET['post']);
-$file 	= $urlFILE.'.json'; 
+<?php 
+
+include "functions.php"; 
+
+$file 	= $_GET['post'].'.json'; 
 $dir  	= "json/single";
 $result	= glob('./'.$dir .'/'.$file);
 //print_r($result);
@@ -11,7 +13,9 @@ if (!empty($result)) {
 
 	foreach ($json as $key => $value) {
 		
-		echo $value['title'];
+		echo '<h2 align="center">'.$value['title'].'</h2>';
+
+		include "deskripsi.php";
 
 echo '<ul>';
 
@@ -29,7 +33,7 @@ echo '<ul>';
 				}	
 	
 
-echo '</ul>';
+echo '</div>';
 	}
 
 } else {
