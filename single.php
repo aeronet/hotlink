@@ -1,6 +1,6 @@
 <?php  
-
-$file 	= $_GET['post'].'.json'; 
+$urlFILE = str_replace('-', '+',$_GET['post']);
+$file 	= $urlFILE.'.json'; 
 $dir  	= "json/single";
 $result	= glob('./'.$dir .'/'.$file);
 //print_r($result);

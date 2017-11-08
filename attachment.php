@@ -1,6 +1,8 @@
 <?php  
 
-$file 	= $_GET['img'].'.json'; 
+
+$urlFILE = str_replace('-', '+',$_GET['img']);
+$file 	= $urlFILE.'.json'; 
 $dir  	= "json/attachment";
 $result	= glob('./'.$dir .'/'.$file);
 //print_r($result);
@@ -21,8 +23,8 @@ if (!empty($result)) {
 
 	}
 
-
-$file_related 		= $parent.'.json'; 
+$relatedPARENT      = str_replace('-', '+', $parent);
+$file_related 		= $relatedPARENT.'.json'; 
 $dir_related  		= "json/single";
 $result_related		= glob('./'.$dir_related .'/'.$file_related);
 $get_file_related 	= file_get_contents(__DIR__ . '/'.$dir_related.'/'.$file_related);
