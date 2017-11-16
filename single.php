@@ -1,48 +1,13 @@
-<?php 
-
-include "functions.php"; 
-
-$file 	= $_GET['post'].'.json'; 
-$dir  	= "json/single";
-$result	= glob('./'.$dir .'/'.$file);
-//print_r($result);
-if (!empty($result)) {
-
-	$get_file 	= file_get_contents(__DIR__ . '/'.$dir.'/'.$file);
-	$json 		= json_decode($get_file, true);
-
-	foreach ($json as $key => $value) {
-		
-		echo '<h2 align="center">'.$value['title'].'</h2>';
-
-		include "deskripsi.php";
-
-echo '<ul>';
-
-
-			foreach ($value['IMG'] as $subkey => $subvalue) {
-							$linkIMG = strtolower($subvalue['parentIMG'].'/'.$subvalue['fileIMG'].'.html');
-					?>
-					<li style="float: left;">
-					<a href="<?php echo $linkIMG ?>" title="<?php echo $subvalue['titleIMG'] ?>" >
-<img src="<?php echo $subvalue['urlIMG']; ?>" onerror="this.src='<?php echo $subvalue['thumbIMG'] ?>'" alt="<?php echo $subvalue['titleIMG'] ?>" width="200" height="150" />
-					</a>
-					</li>
-					<?php
-				
-				}	
-	
-
-echo '</div>';
-	}
-
-} else {
-
-	 header('HTTP/1.1 404 Not Found'); //This may be put inside err.php instead
-	 include 'errors/404.php';
-  	 exit; //Do not do any more work in this script.
-
-}
-
-
-?>
+<?php include "header.php"; ?>
+<h2 align="center"><?php echo the_title($page); ?></h2>
+<?php include "deskripsi.php"; ?>
+<?php echo '<ul style="list-style: none;">';	
+foreach ($page['IMG'] as $key => $value) {
+	$linkIMG = $page['url'].'/'.$value['attachment'].'.html'; ?>
+		<li style="float: left;">
+			<a href="<?php echo pathUrl().$linkIMG ?>" title="<?php echo clean($value['title']) ?>" >
+				<img src="<?php echo $value['urlIMG']; ?>" onerror="this.src='<?php echo $value['thumbIMG'] ?>'" alt="<?php echo clean($value['title']) ?>" title="<?php echo clean($value['title']) ?>" width="200" height="150" />
+			</a>
+		</li>
+<?php } echo '</ul>'; ?>
+<?php include "footer.php"; ?>
